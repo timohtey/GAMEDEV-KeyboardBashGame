@@ -12,6 +12,8 @@ public class PlayScreen {
 	public final static int MAPSIZE = 640;
 	public final static int CENTER = (MAPSIZE/2)-(DIMENSION/2);
 	
+	
+	private int lives;
 	private int score;
 	private int level;
 	private int speed;
@@ -25,6 +27,7 @@ public class PlayScreen {
 	private Timer moveKey;
 	
 	public PlayScreen(GameFrame gameFrame){
+		lives = 20;
 		score = 0;
 		tries = 0;
 		success = 0;
@@ -120,6 +123,7 @@ public class PlayScreen {
 
 		keyHole.render(gd);
 		
+		
 		for(int i = 0; i<streams.size(); i++){
 			for(int j = 0; j<streams.get(i).getKeys().size();j++){
 				streams.get(i).render(gd);
@@ -149,6 +153,8 @@ public class PlayScreen {
 					score+=1;
 					success++;
 					keys.remove(0);
+				}else{
+					lives--;
 				}
 				tries++;
 			}
@@ -160,38 +166,54 @@ public class PlayScreen {
 			switch(stream.getDirection()){
 				case 1: if(stream.getKeys().size()>0 && stream.getKeys().get(0).getY()>(keyHole.getY()+16)){
 							stream.getKeys().remove(0);
+							lives--;
+							tries++;
 						}
 				break;
 				case 2: if(stream.getKeys().size()>0 && stream.getKeys().get(0).getY()>(keyHole.getY()+16) 
 						&& stream.getKeys().get(0).getX()<(keyHole.getX()-16)){
 					stream.getKeys().remove(0);
+					lives--;
+					tries++;
 				}
 				break;
 				case 3: if(stream.getKeys().size()>0 && stream.getKeys().get(0).getX()<(keyHole.getX()-16)){
 					stream.getKeys().remove(0);
+					lives--;
+					tries++;
 				}
 				break;
 				case 4: if(stream.getKeys().size()>0 && stream.getKeys().get(0).getX()<(keyHole.getX()-16) 
 						&& 	stream.getKeys().get(0).getY()<(keyHole.getY()-16)){
 					stream.getKeys().remove(0);
+					lives--;
+					tries++;
 				}
 				break;
 				case 5: if(stream.getKeys().size()>0 && stream.getKeys().get(0).getY()<(keyHole.getY()-16)){
 					stream.getKeys().remove(0);
+					lives--;
+					tries++;
 				}
 				break;
 				case 6: if(stream.getKeys().size()>0 && stream.getKeys().get(0).getY()<(keyHole.getY()-16)
 						&& stream.getKeys().get(0).getX()>(keyHole.getX()+16)){
 					stream.getKeys().remove(0);
+					lives--;
+					tries++;
 				}
 				break;
 				case 7: if(stream.getKeys().size()>0 && stream.getKeys().get(0).getX()>(keyHole.getX()+16)){
 					stream.getKeys().remove(0);
+					lives--;
+					tries++;
 				}
 				break;
 				case 8: if(stream.getKeys().size()>0 && stream.getKeys().get(0).getX()>(keyHole.getX()+16)
 						&& stream.getKeys().get(0).getY()>(keyHole.getY()+16)){
 					stream.getKeys().remove(0);
+					lives--;
+					tries++;
 				}
 				break;
 			}
