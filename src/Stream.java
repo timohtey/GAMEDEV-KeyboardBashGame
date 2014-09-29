@@ -11,6 +11,7 @@ public class Stream {
 	
 	public Stream(int keyPressed, int direction, int x, int y){
 		this.keys = new ArrayList<Key>();
+		this.unreleasedList = new ArrayList<Key>();
 		this.setKeyPressed(keyPressed);
 		this.setDirection(direction);
 		this.setX(x);
@@ -65,26 +66,27 @@ public class Stream {
 
 	public void moveKeys(){
 		for(Key key : keys){
+			int speed = key.getSpeed();
 			switch(direction){
-				case 1: key.setY(key.getY()+32*0.5);
+				case 1: key.setY(key.getY()+1*speed);
 						break;
-				case 2: key.setX(key.getX()-32*0.5);
-						key.setY(key.getY()+32*0.5);
+				case 2: key.setX(key.getX()-1*speed);
+						key.setY(key.getY()+1*speed);
 						break;
-				case 3: key.setX(key.getX()-32*0.5);
+				case 3: key.setX(key.getX()-1*speed);
 						break;
-				case 4: key.setX(key.getX()-32*0.5);
-						key.setY(key.getY()-32*0.5);
+				case 4: key.setX(key.getX()-1*speed);
+						key.setY(key.getY()-1*speed);
 						break;
-				case 5: key.setY(key.getY()-32*0.5);
+				case 5: key.setY(key.getY()-1*speed);
 						break;
-				case 6: key.setX(key.getX()+32*0.5);
-						key.setY(key.getY()-32*0.5);
+				case 6: key.setX(key.getX()+1*speed);
+						key.setY(key.getY()-1*speed);
 						break;
-				case 7: key.setX(key.getX()+32*0.5);
+				case 7: key.setX(key.getX()+1*speed);
 						break;
-				case 8: key.setX(key.getX()+32*0.5);
-						key.setY(key.getY()+32*0.5);
+				case 8: key.setX(key.getX()+1*speed);
+						key.setY(key.getY()+1*speed);
 						break;
 			}
 		}
