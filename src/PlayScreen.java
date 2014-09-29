@@ -25,6 +25,8 @@ public class PlayScreen {
 	private Keyhole keyHole;
 	
 	private Timer moveKey;
+	private Timer timeRemaining;
+	long time;
 	
 	public PlayScreen(GameFrame gameFrame){
 		lives = 20;
@@ -34,6 +36,7 @@ public class PlayScreen {
 		speed = level*1;
 		this.gameFrame = gameFrame;
 		initializeEntities();
+		timeRemaining = new Timer(60000);
 		chooseMusic();
 	}
 
@@ -99,12 +102,11 @@ public class PlayScreen {
 		
 		for(int i = 0; i<streams.size();i++){
 			for(int j = 0; j<keys.size();j++){
-				System.out.println(streams.get(i).getKeyPressed() + " : " + keys.get(j).getKeyPressed());
 				if(streams.get(i).getKeyPressed() == keys.get(j).getKeyPressed()){
 					Key key = keys.get(j);
 					key.setX(streams.get(i).getX());
 					key.setY(streams.get(i).getY());
-					streams.get(i).addKey(key);
+					streams.get(i).addUnreleasedKey(key);
 				}
 			}
 		}
@@ -121,22 +123,30 @@ public class PlayScreen {
 		gd.setColor(Color.white);
 		gd.fillRect(0, 0, gameFrame.getWidth(), gameFrame.getHeight());
 
+		long time = (60 - (timeRemaining.getCurrentTick()/1000));
+		gameFrame.fontManager.getFont("FPS Font").drawString(gd, "TIME:"+time, 5, 10);
+		
 		keyHole.render(gd);
 		
 		
 		for(int i = 0; i<streams.size(); i++){
-			for(int j = 0; j<streams.get(i).getKeys().size();j++){
+			for(int k = 0; k < streams.get(i).getKeys().size(); k++){
 				streams.get(i).render(gd);
 			}
 		}
 		
 	}
 	
+	
 	public void update(long elapsedTime){		
 		if(moveKey.action(elapsedTime)){
 			for(int i = 0; i<streams.size(); i++){
 				streams.get(i).moveKeys();		
 			}
+		}
+		
+		if(timeRemaining.action(elapsedTime)){
+			
 		}
 		
 		checkKeyHoleAndKeyCollision();

@@ -22,6 +22,7 @@ public class Level {
 
 	private void setupLevel1() {
 		// add keys here
+		keys.add(new Key(gameFrame.getImage("assets/placeholder.png"), 0.0, 0.0, KeyEvent.VK_1, 58));
 		keys.add(new Key(gameFrame.getImage("assets/placeholder.png"), 0.0, 0.0, KeyEvent.VK_1, 1));
 		keys.add(new Key(gameFrame.getImage("assets/placeholder.png"), 0.0, 0.0, KeyEvent.VK_2, 1));
 		keys.add(new Key(gameFrame.getImage("assets/placeholder.png"), 0.0, 0.0, KeyEvent.VK_3, 1));
