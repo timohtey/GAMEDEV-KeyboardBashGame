@@ -8,9 +8,9 @@ import com.golden.gamedev.object.Timer;
 public class PlayScreen {
 	private GameFrame gameFrame;
 	
-	private final int DIMENSION = 32;
-	private final int MAPSIZE = 640;
-	private final int CENTER = (MAPSIZE/2)-(DIMENSION/2);
+	public final static int DIMENSION = 32;
+	public final static int MAPSIZE = 640;
+	public final static int CENTER = (MAPSIZE/2)-(DIMENSION/2);
 	
 	private int score;
 	private int level;
@@ -116,20 +116,7 @@ public class PlayScreen {
 		keyHole.render(gd);
 	}
 	
-	public void update(long elapsedTime){
-//		for(int i = 0; i<streams.size(); i++){
-////			for(Key key: streams.get(i).getKeys()){
-////				key.setY(key.getY()+32*0.5);
-////			}
-//			streams.get(i).moveKeys();
-////			if(moveKey.action(elapsedTime)){
-////				streams.get(i).moveKeys();
-////			}
-////			for(int j = 0; j<streams.get(i).getKeys().size();j++){
-////				streams.get(i).update(elapsedTime);
-////			}
-//		}
-		
+	public void update(long elapsedTime){		
 		if(moveKey.action(elapsedTime)){
 			for(int i = 0; i<streams.size(); i++){
 				streams.get(i).moveKeys();		
@@ -141,6 +128,17 @@ public class PlayScreen {
 	}
 	
 	public void checkKeyHoleCollision(){
-		
+		for(Stream stream: streams){
+			ArrayList<Key> keys = stream.getKeys();
+			if(gameFrame.keyPressed(stream.getKeyPressed())){
+				if(keys.size()!=0 && Math.abs(keys.get(0).getX()-keyHole.getX())<PlayScreen.DIMENSION && 
+				   Math.abs(keys.get(0).getY()-keyHole.getY())<PlayScreen.DIMENSION){
+					score+=1;
+					success++;
+					keys.remove(0);
+				}
+				tries++;
+			}
+		}
 	}
 }
