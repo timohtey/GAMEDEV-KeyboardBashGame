@@ -6,17 +6,27 @@ import com.golden.gamedev.Game;
 
 public class GameFrame extends Game{
 	int activeScreen;
-	final int PLAYSCREEN = 0;
+	public final static int PLAYSCREEN = 0;
+	public final static int MAINSCREEN = 1;
 	PlayScreen playScreen;
+	MainScreen mainScreen;
 	public void initResources() {
+<<<<<<< HEAD
 		activeScreen = 0;
 		playScreen = new PlayScreen(this);
+=======
+		activeScreen = 1;
+		playScreen = new PlayScreen();
+		mainScreen = new MainScreen(this);
+>>>>>>> 76eb52914312b10cfede3d0b89eb3965483a033e
 	}
-
+	
 	@Override
 	public void render(Graphics2D gd) {
 		switch(activeScreen){
 			case PLAYSCREEN: playScreen.render(gd); 
+							 break;
+			case MAINSCREEN: mainScreen.render(gd);
 							 break;
 		}
 	}
@@ -26,7 +36,15 @@ public class GameFrame extends Game{
 		switch(activeScreen){
 			case PLAYSCREEN: playScreen.update(elapsedTime); 
 							 break;
+			case MAINSCREEN: mainScreen.update(elapsedTime);
+			 				 break;
 		}
 	}
+	
+	public void setActiveScreen(int screen){
+		activeScreen = screen;
+		Driver.log("Active Screen set to " + screen);
+	}
+	
 
 }
