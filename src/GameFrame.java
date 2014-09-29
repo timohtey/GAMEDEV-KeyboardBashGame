@@ -11,14 +11,9 @@ public class GameFrame extends Game{
 	PlayScreen playScreen;
 	MainScreen mainScreen;
 	public void initResources() {
-<<<<<<< HEAD
-		activeScreen = 0;
-		playScreen = new PlayScreen(this);
-=======
 		activeScreen = 1;
-		playScreen = new PlayScreen();
+		playScreen = new PlayScreen(this);
 		mainScreen = new MainScreen(this);
->>>>>>> 76eb52914312b10cfede3d0b89eb3965483a033e
 	}
 	
 	@Override
