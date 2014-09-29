@@ -15,7 +15,7 @@ public class GameFrame extends Game{
 
 	@Override
 	public void render(Graphics2D gd) {
-		fontManager.getFont("FPS Font").drawString(gd, "SPEED "+speed, 200, 350);
+		fontManager.getFont("FPS Font").drawString(gd, " ", 200, 350);
 		MainScreen.render(this,gd);
 	}
 

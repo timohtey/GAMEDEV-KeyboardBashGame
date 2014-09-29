@@ -17,7 +17,7 @@ public class MainScreen {
 	public static void render(Game g, Graphics2D gd){
 		
 		gd.setColor(Color.gray);
-        gd.fillRect(startButton.getX(), g.getWidth(), g.getHeight());
+//        gd.fillRect(startButton.getX(), g.getWidth(), g.getHeight());
 		g.fontManager.getFont("Arial").drawString(gd, "Start Game", 200, 350);
 	}
 }
