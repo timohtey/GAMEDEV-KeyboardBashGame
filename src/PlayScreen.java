@@ -2,6 +2,8 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+import com.golden.gamedev.object.Timer;
+
 public class PlayScreen {
 	private final int DIMENSION = 32;
 	private final int MAPSIZE = 640;
@@ -17,6 +19,8 @@ public class PlayScreen {
 	private ArrayList<Stream> streams;
 	private Keyhole keyHole;
 	
+	private Timer moveKey;
+	
 	public PlayScreen(GameFrame gameFrame){
 		score = 0;
 		tries = 0;
@@ -31,6 +35,8 @@ public class PlayScreen {
 		keyHole = new Keyhole(gameFrame.getImage("assets/placeholder.png"), CENTER, CENTER);
 		
 		initializeStreams(gameFrame);
+		
+		moveKey = new Timer(50);
 	}
 
 	private void initializeStreams(GameFrame gameFrame) {
@@ -83,7 +89,6 @@ public class PlayScreen {
 			}
 			
 			Stream stream = new Stream(keyPressed, i+1, x, y);
-			stream.setDirection(direction);
 			streams.add(stream);
 			
 			Key key = new Key(gameFrame.getImage("assets/placeholder.png"), x, y);
@@ -104,7 +109,7 @@ public class PlayScreen {
 	public void render(Graphics2D gd){
 		for(int i = 0; i<streams.size(); i++){
 			for(int j = 0; j<streams.get(i).getKeys().size();j++){
-				streams.get(i).getKeys().get(j).render(gd);
+				streams.get(i).render(gd);
 			}
 		}
 		
@@ -116,7 +121,12 @@ public class PlayScreen {
 			for(int j = 0; j<streams.get(i).getKeys().size();j++){
 				streams.get(i).getKeys().get(j).update(elapsedTime);
 			}
+			if(moveKey.action(elapsedTime)){
+				streams.get(i).moveKeys();
+			}
 		}
+		
+		
 	}
 	
 }

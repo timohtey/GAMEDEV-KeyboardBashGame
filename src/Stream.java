@@ -1,3 +1,4 @@
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 
 public class Stream {
@@ -14,7 +15,13 @@ public class Stream {
 		this.setX(x);
 		this.setY(y);
 	}
-
+	
+	public void render(Graphics2D gd){
+		for(Key k : keys){
+			k.render(gd);
+		}
+	}
+	
 	public ArrayList<Key> getKeys() {
 		return keys;
 	}
