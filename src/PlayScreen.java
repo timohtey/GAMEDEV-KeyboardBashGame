@@ -37,7 +37,7 @@ public class PlayScreen {
 	private void initializeEntities() {
 		streams = new ArrayList<Stream>();
 		keyHole = new Keyhole(gameFrame.getImage("assets/placeholder.png"), CENTER, CENTER);
-		moveKey = new Timer(10);
+		moveKey = new Timer(300);
 		initializeStreams();
 	}
 
@@ -92,11 +92,6 @@ public class PlayScreen {
 			
 			Stream stream = new Stream(keyPressed, i+1, x, y);
 			streams.add(stream);
-			
-			Key key = new Key(gameFrame.getImage("assets/placeholder.png"), x, y);
-			ArrayList<Key> keys = new ArrayList<Key>();
-			keys.add(key);
-			streams.get(0).setKeys(keys);
 		}
 		
 	}
