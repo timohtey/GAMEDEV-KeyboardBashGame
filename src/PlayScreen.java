@@ -8,9 +8,9 @@ import com.golden.gamedev.object.Timer;
 public class PlayScreen {
 	private GameFrame gameFrame;
 	
-	private final int DIMENSION = 32;
-	private final int MAPSIZE = 640;
-	private final int CENTER = (MAPSIZE/2)-(DIMENSION/2);
+	public final static int DIMENSION = 32;
+	public final static int MAPSIZE = 640;
+	public final static int CENTER = (MAPSIZE/2)-(DIMENSION/2);
 	
 	private int score;
 	private int level;
@@ -39,8 +39,10 @@ public class PlayScreen {
 
 	private void initializeEntities() {
 		streams = new ArrayList<Stream>();
+		
 		keyHole = new Keyhole(gameFrame.getImage("assets/keyhole.png"), CENTER, CENTER);
 		moveKey = new Timer(300);
+		
 		initializeKeys();
 	}
 	
@@ -118,8 +120,12 @@ public class PlayScreen {
 		gd.setColor(Color.white);
 		gd.fillRect(0, 0, gameFrame.getWidth(), gameFrame.getHeight());
 
+<<<<<<< HEAD
 		long time = (60 - (timeRemaining.getCurrentTick()/1000));
 		gameFrame.fontManager.getFont("FPS Font").drawString(gd, "TIME:"+time, 5, 10);
+=======
+		keyHole.render(gd);
+>>>>>>> f8f64c1f9c36893a59db179118c45adc59c35dd9
 		
 		for(int i = 0; i<streams.size(); i++){
 			for(int k = 0; k < streams.get(i).getKeys().size(); k++){
@@ -127,8 +133,8 @@ public class PlayScreen {
 			}
 		}
 		
-		keyHole.render(gd);
 	}
+<<<<<<< HEAD
 
 	public void update(long elapsedTime){
 //		for(int i = 0; i<streams.size(); i++){
@@ -144,21 +150,84 @@ public class PlayScreen {
 ////			}
 //		}
 		
+=======
+	
+	public void update(long elapsedTime){		
+>>>>>>> f8f64c1f9c36893a59db179118c45adc59c35dd9
 		if(moveKey.action(elapsedTime)){
 			for(int i = 0; i<streams.size(); i++){
 				streams.get(i).moveKeys();		
 			}
 		}
 		
+<<<<<<< HEAD
 		if(timeRemaining.action(elapsedTime)){
 			
 		}
 		
 		checkKeyHoleCollision();
+=======
+		checkKeyHoleAndKeyCollision();
+		checkKeyDecay();
+>>>>>>> f8f64c1f9c36893a59db179118c45adc59c35dd9
 		
 	}
 	
-	public void checkKeyHoleCollision(){
-		
+	public void checkKeyHoleAndKeyCollision(){
+		for(Stream stream: streams){
+			ArrayList<Key> keys = stream.getKeys();
+			if(gameFrame.keyPressed(stream.getKeyPressed())){
+				if(keys.size()!=0 && Math.abs(keys.get(0).getX()-keyHole.getX())<PlayScreen.DIMENSION && 
+				   Math.abs(keys.get(0).getY()-keyHole.getY())<PlayScreen.DIMENSION){
+					score+=1;
+					success++;
+					keys.remove(0);
+				}
+				tries++;
+			}
+		}
+	}
+	
+	public void checkKeyDecay(){
+		for(Stream stream: streams){
+			switch(stream.getDirection()){
+				case 1: if(stream.getKeys().size()>0 && stream.getKeys().get(0).getY()>(keyHole.getY()+16)){
+							stream.getKeys().remove(0);
+						}
+				break;
+				case 2: if(stream.getKeys().size()>0 && stream.getKeys().get(0).getY()>(keyHole.getY()+16) 
+						&& stream.getKeys().get(0).getX()<(keyHole.getX()-16)){
+					stream.getKeys().remove(0);
+				}
+				break;
+				case 3: if(stream.getKeys().size()>0 && stream.getKeys().get(0).getX()<(keyHole.getX()-16)){
+					stream.getKeys().remove(0);
+				}
+				break;
+				case 4: if(stream.getKeys().size()>0 && stream.getKeys().get(0).getX()<(keyHole.getX()-16) 
+						&& 	stream.getKeys().get(0).getY()<(keyHole.getY()-16)){
+					stream.getKeys().remove(0);
+				}
+				break;
+				case 5: if(stream.getKeys().size()>0 && stream.getKeys().get(0).getY()<(keyHole.getY()-16)){
+					stream.getKeys().remove(0);
+				}
+				break;
+				case 6: if(stream.getKeys().size()>0 && stream.getKeys().get(0).getY()<(keyHole.getY()-16)
+						&& stream.getKeys().get(0).getX()>(keyHole.getX()+16)){
+					stream.getKeys().remove(0);
+				}
+				break;
+				case 7: if(stream.getKeys().size()>0 && stream.getKeys().get(0).getX()>(keyHole.getX()+16)){
+					stream.getKeys().remove(0);
+				}
+				break;
+				case 8: if(stream.getKeys().size()>0 && stream.getKeys().get(0).getX()>(keyHole.getX()+16)
+						&& stream.getKeys().get(0).getY()>(keyHole.getY()+16)){
+					stream.getKeys().remove(0);
+				}
+				break;
+			}
+		}
 	}
 }
