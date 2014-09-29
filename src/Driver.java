@@ -11,4 +11,8 @@ public class Driver {
         game.setup(gf,new Dimension(640,640), false);
         game.start();
     }
+    
+    public static void log(Object obj){
+    	System.out.println(obj);
+    }
 }
