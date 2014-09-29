@@ -1,8 +1,11 @@
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 public class PlayScreen {
+	private GameFrame gameFrame;
+	
 	private final int DIMENSION = 32;
 	private final int MAPSIZE = 640;
 	private final int CENTER = (MAPSIZE/2)-(DIMENSION/2);
@@ -22,18 +25,19 @@ public class PlayScreen {
 		tries = 0;
 		success = 0;
 		speed = level*1;
-		initializeEntities(gameFrame);
+		this.gameFrame = gameFrame;
+		initializeEntities();
 		chooseMusic();
 	}
 
-	private void initializeEntities(GameFrame gameFrame) {
+	private void initializeEntities() {
 		streams = new ArrayList<Stream>();
 		keyHole = new Keyhole(gameFrame.getImage("assets/placeholder.png"), CENTER, CENTER);
 		
-		initializeStreams(gameFrame);
+		initializeStreams();
 	}
 
-	private void initializeStreams(GameFrame gameFrame) {
+	private void initializeStreams() {
 		for(int i = 0; i<8; i++){
 			int keyPressed = 0;
 			int x = 0;
@@ -102,6 +106,9 @@ public class PlayScreen {
 	}
 
 	public void render(Graphics2D gd){
+		gd.setColor(Color.white);
+		gd.fillRect(0, 0, gameFrame.getWidth(), gameFrame.getHeight());
+		
 		for(int i = 0; i<streams.size(); i++){
 			for(int j = 0; j<streams.get(i).getKeys().size();j++){
 				streams.get(i).getKeys().get(j).render(gd);
