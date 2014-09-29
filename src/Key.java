@@ -7,11 +7,13 @@ public class Key extends Sprite{
 	private int speed;
 	private long time;
 	private int keyPressed;
+	private boolean isSpawn;
 	
 	public Key(BufferedImage bufferedImage, double x, double y, int keyPressed, long time){
 		super(bufferedImage,x,y);
 		this.keyPressed = keyPressed;
 		this.time = time;
+		setSpawn(false);
 	}
 	
 	public int getSpeed() {
@@ -36,5 +38,13 @@ public class Key extends Sprite{
 
 	public void setKeyPressed(int keyPressed) {
 		this.keyPressed = keyPressed;
+	}
+
+	public boolean isSpawn() {
+		return isSpawn;
+	}
+
+	public void setSpawn(boolean isSpawn) {
+		this.isSpawn = isSpawn;
 	}
 }

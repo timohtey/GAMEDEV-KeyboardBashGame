@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 public class Stream {
 	private ArrayList<Key> keys;
+	private ArrayList<Key> unreleasedList;
 	private int keyPressed;
 	private int direction; // 1 - 8
 	private int x;
@@ -65,34 +66,41 @@ public class Stream {
 	public void moveKeys(){
 		for(Key key : keys){
 			switch(direction){
-			case 1: key.setY(key.getY()+32*0.5);
-					break;
-			case 2: key.setX(key.getX()-32*0.5);
-					key.setY(key.getY()+32*0.5);
-					break;
-			case 3: key.setX(key.getX()-32*0.5);
-					break;
-			case 4: key.setX(key.getX()-32*0.5);
-					key.setY(key.getY()-32*0.5);
-					break;
-			case 5: key.setY(key.getY()-32*0.5);
-					break;
-			case 6: key.setX(key.getX()+32*0.5);
-					key.setY(key.getY()-32*0.5);
-					break;
-			case 7: key.setX(key.getX()+32*0.5);
-					break;
-			case 8: key.setX(key.getX()+32*0.5);
-					key.setY(key.getY()+32*0.5);
-					break;
+				case 1: key.setY(key.getY()+32*0.5);
+						break;
+				case 2: key.setX(key.getX()-32*0.5);
+						key.setY(key.getY()+32*0.5);
+						break;
+				case 3: key.setX(key.getX()-32*0.5);
+						break;
+				case 4: key.setX(key.getX()-32*0.5);
+						key.setY(key.getY()-32*0.5);
+						break;
+				case 5: key.setY(key.getY()-32*0.5);
+						break;
+				case 6: key.setX(key.getX()+32*0.5);
+						key.setY(key.getY()-32*0.5);
+						break;
+				case 7: key.setX(key.getX()+32*0.5);
+						break;
+				case 8: key.setX(key.getX()+32*0.5);
+						key.setY(key.getY()+32*0.5);
+						break;
+			}
 		}
-		}
-		
 	}
 	
 	public void update(long elapsedTime){
 		for(Key key:keys){
 			key.update(elapsedTime);
 		}
+	}
+
+	public ArrayList<Key> getUnreleased() {
+		return unreleasedList;
+	}
+
+	public void addUnreleasedKey(Key unreleased) {
+		unreleasedList.add(unreleased);
 	}
 }
