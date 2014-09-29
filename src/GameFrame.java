@@ -10,7 +10,7 @@ public class GameFrame extends Game{
 	PlayScreen playScreen;
 	public void initResources() {
 		activeScreen = 0;
-		playScreen = new PlayScreen();
+		playScreen = new PlayScreen(this);
 	}
 
 	@Override

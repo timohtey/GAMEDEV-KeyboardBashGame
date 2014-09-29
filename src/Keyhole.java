@@ -1,30 +1,33 @@
+import java.awt.image.BufferedImage;
 
-public class Keyhole {
-	private int x;
-	private int y;
+import com.golden.gamedev.object.Sprite;
+
+
+public class Keyhole extends Sprite{
+	private double x;
+	private double y;
 	private int length; // x
 	private int width; // y
 	
-	public Keyhole(int x, int y, int length, int width){
-		this.setX(x);
-		this.setY(y);
-		this.setLength(length);
-		this.setWidth(width);
+	public Keyhole(BufferedImage bufferedImage, int x, int y){
+		super(bufferedImage, x , y);
+		length = 32;
+		width = 32;
 	}
 
-	public int getX() {
+	public double getX() {
 		return x;
 	}
 
-	public void setX(int x) {
+	public void setX(double x) {
 		this.x = x;
 	}
 
-	public int getY() {
+	public double getY() {
 		return y;
 	}
 
-	public void setY(int y) {
+	public void setY(double y) {
 		this.y = y;
 	}
 
