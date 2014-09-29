@@ -5,10 +5,7 @@ import com.golden.gamedev.Game;
 
 
 public class GameFrame extends Game{
-	
-	ArrayList<Drop> drops = new ArrayList<Drop>();
-	
-	
+		
 	public void initResources() {
 		
 	}
