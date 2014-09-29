@@ -2,13 +2,13 @@ import java.util.ArrayList;
 
 public class Stream {
 	private ArrayList<Key> keys;
-	private char keyPressed;
+	private int keyPressed;
 	private int direction; // 1 - 8
 	private int x;
 	private int y;
 	
-	public Stream(ArrayList<Key> keys, char keyPressed, int direction, int x, int y){
-		this.keys = keys;
+	public Stream(int keyPressed, int direction, int x, int y){
+		this.keys = new ArrayList<Key>();
 		this.setKeyPressed(keyPressed);
 		this.setDirection(direction);
 		this.setX(x);
@@ -23,11 +23,11 @@ public class Stream {
 		this.keys = keys;
 	}
 
-	public char getKeyPressed() {
+	public int getKeyPressed() {
 		return keyPressed;
 	}
 
-	public void setKeyPressed(char keyPressed) {
+	public void setKeyPressed(int keyPressed) {
 		this.keyPressed = keyPressed;
 	}
 

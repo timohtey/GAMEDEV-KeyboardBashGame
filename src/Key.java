@@ -1,18 +1,19 @@
+import java.awt.image.BufferedImage;
 
-public class Key {
-	private int x;
-	private int y;
+import com.golden.gamedev.object.Sprite;
+
+
+public class Key extends Sprite{
+	private double x;
+	private double y;
 	private int speed;
 	private long time;
 	
-	public Key(int x, int y, int speed, long time){
-		this.setX(x);
-		this.setY(y);
-		this.setSpeed(speed);
-		this.setTime(time);
+	public Key(BufferedImage bufferedImage, double x, double y){
+		super(bufferedImage,x,y);
 	}
 	
-	public int getX() {
+	public double getX() {
 		return x;
 	}
 	
@@ -20,11 +21,11 @@ public class Key {
 		this.x = x;
 	}
 	
-	public int getY() {
+	public double getY() {
 		return y;
 	}
 	
-	public void setY(int y) {
+	public void setY(double y) {
 		this.y = y;
 	}
 	
