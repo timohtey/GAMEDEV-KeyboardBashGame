@@ -95,7 +95,6 @@ public class Stream {
 			key.update(elapsedTime);
 		}
 	}
-<<<<<<< HEAD
 
 	public ArrayList<Key> getUnreleased() {
 		return unreleasedList;
@@ -103,16 +102,13 @@ public class Stream {
 
 	public void addUnreleasedKey(Key unreleased) {
 		unreleasedList.add(unreleased);
-=======
+	}
 	
 	public void readInput(GameFrame g,Keyhole kh, int dimension){
 		if(g.keyPressed(keyPressed) && keys.size()!=0){
 			if(Math.abs(keys.get(0).getX()-kh.getX())<PlayScreen.DIMENSION && 
 			   Math.abs(keys.get(0).getY()-kh.getY())<PlayScreen.DIMENSION){
-				
 			}
-			
 		}
->>>>>>> f8f64c1f9c36893a59db179118c45adc59c35dd9
 	}
 }

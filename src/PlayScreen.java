@@ -120,12 +120,10 @@ public class PlayScreen {
 		gd.setColor(Color.white);
 		gd.fillRect(0, 0, gameFrame.getWidth(), gameFrame.getHeight());
 
-<<<<<<< HEAD
 		long time = (60 - (timeRemaining.getCurrentTick()/1000));
 		gameFrame.fontManager.getFont("FPS Font").drawString(gd, "TIME:"+time, 5, 10);
-=======
+		
 		keyHole.render(gd);
->>>>>>> f8f64c1f9c36893a59db179118c45adc59c35dd9
 		
 		for(int i = 0; i<streams.size(); i++){
 			for(int k = 0; k < streams.get(i).getKeys().size(); k++){
@@ -134,42 +132,21 @@ public class PlayScreen {
 		}
 		
 	}
-<<<<<<< HEAD
-
-	public void update(long elapsedTime){
-//		for(int i = 0; i<streams.size(); i++){
-////			for(Key key: streams.get(i).getKeys()){
-////				key.setY(key.getY()+32*0.5);
-////			}
-//			streams.get(i).moveKeys();
-////			if(moveKey.action(elapsedTime)){
-////				streams.get(i).moveKeys();
-////			}
-////			for(int j = 0; j<streams.get(i).getKeys().size();j++){
-////				streams.get(i).update(elapsedTime);
-////			}
-//		}
-		
-=======
+	
 	
 	public void update(long elapsedTime){		
->>>>>>> f8f64c1f9c36893a59db179118c45adc59c35dd9
 		if(moveKey.action(elapsedTime)){
 			for(int i = 0; i<streams.size(); i++){
 				streams.get(i).moveKeys();		
 			}
 		}
 		
-<<<<<<< HEAD
 		if(timeRemaining.action(elapsedTime)){
 			
 		}
 		
-		checkKeyHoleCollision();
-=======
 		checkKeyHoleAndKeyCollision();
 		checkKeyDecay();
->>>>>>> f8f64c1f9c36893a59db179118c45adc59c35dd9
 		
 	}
 	
