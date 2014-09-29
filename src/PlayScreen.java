@@ -38,55 +38,53 @@ public class PlayScreen {
 		streams = new ArrayList<Stream>();
 		keyHole = new Keyhole(gameFrame.getImage("assets/placeholder.png"), CENTER, CENTER);
 		moveKey = new Timer(300);
-		initializeStreams();
+		initializeKeys();
 	}
-
-	private void initializeStreams() {
+	
+	private void initializeKeys() {
+		ArrayList<Key> keys = new ArrayList<Key>();
+		Level playLevel = new Level(level, gameFrame);
+		keys = playLevel.getKeys();
+		initializeStreams(keys);
+	}
+	
+	private void initializeStreams(ArrayList<Key> keys) {
 		for(int i = 0; i<8; i++){
 			int keyPressed = 0;
 			int x = 0;
 			int y = 0;
-			int direction = 0;
 			switch(i){
 				case 0: keyPressed = KeyEvent.VK_1;
 						x = CENTER;
 						y = CENTER-5*32;
-						direction = 1;
 						break;
 				case 1: keyPressed = KeyEvent.VK_2;
 						x = CENTER+5*32;
 						y = CENTER-5*32;
-						direction = 2;
 						break;
 				case 2: keyPressed = KeyEvent.VK_3;
 						x = CENTER+5*32;
 						y = CENTER;
-						direction = 3;
 						break;
 				case 3: keyPressed = KeyEvent.VK_4;
 						x = CENTER+5*32;
 						y = CENTER+5*32;
-						direction = 4;
 						break;
 				case 4: keyPressed = KeyEvent.VK_5;
 						x = CENTER;
 						y = CENTER+5*32;
-						direction = 5;
 						break;
 				case 5: keyPressed = KeyEvent.VK_6;
 						x = CENTER-5*32;
 						y = CENTER+5*32;
-						direction = 6;
 						break;
 				case 6: keyPressed = KeyEvent.VK_7;
 						x = CENTER-5*32;
 						y = CENTER;
-						direction = 7;
 						break;
 				case 7: keyPressed = KeyEvent.VK_8;
 						x = CENTER-5*32;
 						y = CENTER-5*32;
-						direction = 8;
 						break;
 			}
 			
@@ -94,8 +92,19 @@ public class PlayScreen {
 			streams.add(stream);
 		}
 		
+		for(int i = 0; i<streams.size();i++){
+			for(int j = 0; j<keys.size();j++){
+				System.out.println(streams.get(i).getKeyPressed() + " : " + keys.get(j).getKeyPressed());
+				if(streams.get(i).getKeyPressed() == keys.get(j).getKeyPressed()){
+					Key key = keys.get(j);
+					key.setX(streams.get(i).getX());
+					key.setY(streams.get(i).getY());
+					streams.get(i).addKey(key);
+				}
+			}
+		}
 	}
-
+	
 	private void chooseMusic() {
 		switch(level){
 			case 0: music = "";
