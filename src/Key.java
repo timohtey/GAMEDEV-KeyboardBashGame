@@ -13,6 +13,7 @@ public class Key extends Sprite{
 		super(bufferedImage,x,y);
 		this.keyPressed = keyPressed;
 		this.time = time;
+		speed = 5;
 		setSpawn(false);
 	}
 	

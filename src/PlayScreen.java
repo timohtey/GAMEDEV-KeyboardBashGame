@@ -12,6 +12,11 @@ public class PlayScreen {
 	public final static int DIMENSION = 32;
 	public final static int MAPSIZE = 640;
 	public final static int CENTER = (MAPSIZE/2)-(DIMENSION/2);
+<<<<<<< HEAD
+=======
+	public final static int SIZE = 8;
+	public final static int KEY_DECAY_DISTANCE = 8;
+>>>>>>> e3b8799f15d60ef5ae1c6f6902e51d19652c4127
 	
 	private int lives;
 	private int score;
@@ -45,7 +50,7 @@ public class PlayScreen {
 		streams = new ArrayList<Stream>();
 		
 		keyHole = new Keyhole(gameFrame.getImage("assets/keyhole.png"), CENTER, CENTER);
-		moveKey = new Timer(300);
+		moveKey = new Timer(50);
 		
 		initializeKeys();
 	}
@@ -65,35 +70,35 @@ public class PlayScreen {
 			switch(i){
 				case 0: keyPressed = KeyEvent.VK_1;
 						x = CENTER;
-						y = CENTER-5*32;
+						y = CENTER-SIZE*32;
 						break;
 				case 1: keyPressed = KeyEvent.VK_2;
-						x = CENTER+5*32;
-						y = CENTER-5*32;
+						x = CENTER+SIZE*32;
+						y = CENTER-SIZE*32;
 						break;
 				case 2: keyPressed = KeyEvent.VK_3;
-						x = CENTER+5*32;
+						x = CENTER+SIZE*32;
 						y = CENTER;
 						break;
 				case 3: keyPressed = KeyEvent.VK_4;
-						x = CENTER+5*32;
-						y = CENTER+5*32;
+						x = CENTER+SIZE*32;
+						y = CENTER+SIZE*32;
 						break;
 				case 4: keyPressed = KeyEvent.VK_5;
 						x = CENTER;
-						y = CENTER+5*32;
+						y = CENTER+SIZE*32;
 						break;
 				case 5: keyPressed = KeyEvent.VK_6;
-						x = CENTER-5*32;
-						y = CENTER+5*32;
+						x = CENTER-SIZE*32;
+						y = CENTER+SIZE*32;
 						break;
 				case 6: keyPressed = KeyEvent.VK_7;
-						x = CENTER-5*32;
+						x = CENTER-SIZE*32;
 						y = CENTER;
 						break;
 				case 7: keyPressed = KeyEvent.VK_8;
-						x = CENTER-5*32;
-						y = CENTER-5*32;
+						x = CENTER-SIZE*32;
+						y = CENTER-SIZE*32;
 						break;
 			}
 			
@@ -158,6 +163,13 @@ public class PlayScreen {
 			
 		}
 		
+		for(Stream stream:streams){
+			if(stream.getUnreleased().size()>0 && stream.getUnreleased().get(0).getTime() <= timeRemaining.getCurrentTick()){
+				stream.getKeys().add(stream.getUnreleased().get(0));
+				stream.getUnreleased().remove(0);
+			}
+		}
+		
 		checkKeyHoleAndKeyCollision();
 		checkKeyDecay();
 		
@@ -183,53 +195,53 @@ public class PlayScreen {
 	public void checkKeyDecay(){
 		for(Stream stream: streams){
 			switch(stream.getDirection()){
-				case 1: if(stream.getKeys().size()>0 && stream.getKeys().get(0).getY()>(keyHole.getY()+16)){
+				case 1: if(stream.getKeys().size()>0 && stream.getKeys().get(0).getY()>(keyHole.getY()+KEY_DECAY_DISTANCE)){
 							stream.getKeys().remove(0);
 							lives--;
 							tries++;
 						}
 				break;
-				case 2: if(stream.getKeys().size()>0 && stream.getKeys().get(0).getY()>(keyHole.getY()+16) 
-						&& stream.getKeys().get(0).getX()<(keyHole.getX()-16)){
+				case 2: if(stream.getKeys().size()>0 && stream.getKeys().get(0).getY()>(keyHole.getY()+KEY_DECAY_DISTANCE) 
+						&& stream.getKeys().get(0).getX()<(keyHole.getX()-KEY_DECAY_DISTANCE)){
 					stream.getKeys().remove(0);
 					lives--;
 					tries++;
 				}
 				break;
-				case 3: if(stream.getKeys().size()>0 && stream.getKeys().get(0).getX()<(keyHole.getX()-16)){
+				case 3: if(stream.getKeys().size()>0 && stream.getKeys().get(0).getX()<(keyHole.getX()-KEY_DECAY_DISTANCE)){
 					stream.getKeys().remove(0);
 					lives--;
 					tries++;
 				}
 				break;
-				case 4: if(stream.getKeys().size()>0 && stream.getKeys().get(0).getX()<(keyHole.getX()-16) 
-						&& 	stream.getKeys().get(0).getY()<(keyHole.getY()-16)){
+				case 4: if(stream.getKeys().size()>0 && stream.getKeys().get(0).getX()<(keyHole.getX()-KEY_DECAY_DISTANCE) 
+						&& 	stream.getKeys().get(0).getY()<(keyHole.getY()-KEY_DECAY_DISTANCE)){
 					stream.getKeys().remove(0);
 					lives--;
 					tries++;
 				}
 				break;
-				case 5: if(stream.getKeys().size()>0 && stream.getKeys().get(0).getY()<(keyHole.getY()-16)){
+				case 5: if(stream.getKeys().size()>0 && stream.getKeys().get(0).getY()<(keyHole.getY()-KEY_DECAY_DISTANCE)){
 					stream.getKeys().remove(0);
 					lives--;
 					tries++;
 				}
 				break;
-				case 6: if(stream.getKeys().size()>0 && stream.getKeys().get(0).getY()<(keyHole.getY()-16)
-						&& stream.getKeys().get(0).getX()>(keyHole.getX()+16)){
+				case 6: if(stream.getKeys().size()>0 && stream.getKeys().get(0).getY()<(keyHole.getY()-KEY_DECAY_DISTANCE)
+						&& stream.getKeys().get(0).getX()>(keyHole.getX()+KEY_DECAY_DISTANCE)){
 					stream.getKeys().remove(0);
 					lives--;
 					tries++;
 				}
 				break;
-				case 7: if(stream.getKeys().size()>0 && stream.getKeys().get(0).getX()>(keyHole.getX()+16)){
+				case 7: if(stream.getKeys().size()>0 && stream.getKeys().get(0).getX()>(keyHole.getX()+KEY_DECAY_DISTANCE)){
 					stream.getKeys().remove(0);
 					lives--;
 					tries++;
 				}
 				break;
-				case 8: if(stream.getKeys().size()>0 && stream.getKeys().get(0).getX()>(keyHole.getX()+16)
-						&& stream.getKeys().get(0).getY()>(keyHole.getY()+16)){
+				case 8: if(stream.getKeys().size()>0 && stream.getKeys().get(0).getX()>(keyHole.getX()+KEY_DECAY_DISTANCE)
+						&& stream.getKeys().get(0).getY()>(keyHole.getY()+KEY_DECAY_DISTANCE)){
 					stream.getKeys().remove(0);
 					lives--;
 					tries++;
