@@ -6,9 +6,11 @@ import com.golden.gamedev.object.Sprite;
 public class Key extends Sprite{
 	private int speed;
 	private long time;
+	private int keyPressed;
 	
-	public Key(BufferedImage bufferedImage, double x, double y){
+	public Key(BufferedImage bufferedImage, double x, double y, int keyPressed){
 		super(bufferedImage,x,y);
+		this.keyPressed = keyPressed;
 	}
 	
 	public int getSpeed() {
@@ -25,5 +27,13 @@ public class Key extends Sprite{
 	
 	public void setTime(long time) {
 		this.time = time;
+	}
+
+	public int getKeyPressed() {
+		return keyPressed;
+	}
+
+	public void setKeyPressed(int keyPressed) {
+		this.keyPressed = keyPressed;
 	}
 }

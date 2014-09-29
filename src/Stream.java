@@ -26,8 +26,8 @@ public class Stream {
 		return keys;
 	}
 
-	public void setKeys(ArrayList<Key> keys) {
-		this.keys = keys;
+	public void addKey(Key key) {
+		this.keys.add(key);
 	}
 
 	public int getKeyPressed() {
