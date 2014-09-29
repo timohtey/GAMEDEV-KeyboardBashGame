@@ -36,7 +36,7 @@ public class PlayScreen {
 
 	private void initializeEntities() {
 		streams = new ArrayList<Stream>();
-		keyHole = new Keyhole(gameFrame.getImage("assets/placeholder.png"), CENTER, CENTER);
+		keyHole = new Keyhole(gameFrame.getImage("assets/keyhole.png"), CENTER, CENTER);
 		moveKey = new Timer(300);
 		initializeKeys();
 	}
