@@ -5,7 +5,7 @@ import com.golden.gamedev.Game;
 
 
 public class GameFrame extends Game{
-	int activeScreen;
+	static int activeScreen;
 	public final static int PLAYSCREEN = 0;
 	public final static int MAINSCREEN = 1;
 	PlayScreen playScreen;
@@ -38,6 +38,9 @@ public class GameFrame extends Game{
 	
 	public void setActiveScreen(int screen){
 		activeScreen = screen;
+		if(screen == PLAYSCREEN){
+			playScreen.playSound();
+		}
 		Driver.log("Active Screen set to " + screen);
 	}
 	

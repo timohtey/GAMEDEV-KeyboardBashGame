@@ -12,11 +12,8 @@ public class PlayScreen {
 	public final static int DIMENSION = 32;
 	public final static int MAPSIZE = 640;
 	public final static int CENTER = (MAPSIZE/2)-(DIMENSION/2);
-<<<<<<< HEAD
-=======
 	public final static int SIZE = 8;
 	public final static int KEY_DECAY_DISTANCE = 8;
->>>>>>> e3b8799f15d60ef5ae1c6f6902e51d19652c4127
 	
 	private int lives;
 	private int score;
@@ -35,15 +32,17 @@ public class PlayScreen {
 	long time;
 	
 	public PlayScreen(GameFrame gameFrame){
+		level = 0;
 		lives = 20;
 		score = 0;
 		tries = 0;
 		success = 0;
 		speed = level*1;
 		this.gameFrame = gameFrame;
+		chooseMusic();
 		initializeEntities();
 		timeRemaining = new Timer(60000);
-		chooseMusic();
+		
 	}
 
 	private void initializeEntities() {
@@ -53,8 +52,8 @@ public class PlayScreen {
 		moveKey = new Timer(50);
 		
 		initializeKeys();
+		
 	}
-	
 	private void initializeKeys() {
 		ArrayList<Key> keys = new ArrayList<Key>();
 		Level playLevel = new Level(level, gameFrame);
@@ -118,9 +117,12 @@ public class PlayScreen {
 		}
 	}
 	
+	public void playSound(){
+		//gameFrame.playSound(music);
+	}
 	private void chooseMusic() {
 		switch(level){
-			case 0: music = "";
+			case 0: music = "src/assets/background.wav";
 					break;
 		}	
 	}
