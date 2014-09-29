@@ -62,4 +62,37 @@ public class Stream {
 		this.y = y;
 	}
 
+	public void moveKeys(){
+		for(Key key : keys){
+			switch(direction){
+			case 1: key.setY(key.getY()+32*0.5);
+					break;
+			case 2: key.setX(key.getX()-32*0.5);
+					key.setY(key.getY()+32*0.5);
+					break;
+			case 3: key.setX(key.getX()-32*0.5);
+					break;
+			case 4: key.setX(key.getX()-32*0.5);
+					key.setY(key.getY()-32*0.5);
+					break;
+			case 5: key.setY(key.getY()-32*0.5);
+					break;
+			case 6: key.setX(key.getX()+32*0.5);
+					key.setY(key.getY()-32*0.5);
+					break;
+			case 7: key.setX(key.getX()+32*0.5);
+					break;
+			case 8: key.setX(key.getX()+32*0.5);
+					key.setY(key.getY()+32*0.5);
+					break;
+		}
+		}
+		
+	}
+	
+	public void update(long elapsedTime){
+		for(Key key:keys){
+			key.update(elapsedTime);
+		}
+	}
 }

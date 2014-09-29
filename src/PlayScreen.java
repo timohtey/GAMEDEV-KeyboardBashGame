@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -5,6 +6,8 @@ import java.util.ArrayList;
 import com.golden.gamedev.object.Timer;
 
 public class PlayScreen {
+	private GameFrame gameFrame;
+	
 	private final int DIMENSION = 32;
 	private final int MAPSIZE = 640;
 	private final int CENTER = (MAPSIZE/2)-(DIMENSION/2);
@@ -26,20 +29,19 @@ public class PlayScreen {
 		tries = 0;
 		success = 0;
 		speed = level*1;
-		initializeEntities(gameFrame);
+		this.gameFrame = gameFrame;
+		initializeEntities();
 		chooseMusic();
 	}
 
-	private void initializeEntities(GameFrame gameFrame) {
+	private void initializeEntities() {
 		streams = new ArrayList<Stream>();
 		keyHole = new Keyhole(gameFrame.getImage("assets/placeholder.png"), CENTER, CENTER);
-		
-		initializeStreams(gameFrame);
-		
-		moveKey = new Timer(50);
+		moveKey = new Timer(10);
+		initializeStreams();
 	}
 
-	private void initializeStreams(GameFrame gameFrame) {
+	private void initializeStreams() {
 		for(int i = 0; i<8; i++){
 			int keyPressed = 0;
 			int x = 0;
@@ -94,7 +96,7 @@ public class PlayScreen {
 			Key key = new Key(gameFrame.getImage("assets/placeholder.png"), x, y);
 			ArrayList<Key> keys = new ArrayList<Key>();
 			keys.add(key);
-			streams.get(i).setKeys(keys);
+			streams.get(0).setKeys(keys);
 		}
 		
 	}
@@ -107,6 +109,9 @@ public class PlayScreen {
 	}
 
 	public void render(Graphics2D gd){
+		gd.setColor(Color.white);
+		gd.fillRect(0, 0, gameFrame.getWidth(), gameFrame.getHeight());
+		
 		for(int i = 0; i<streams.size(); i++){
 			for(int j = 0; j<streams.get(i).getKeys().size();j++){
 				streams.get(i).render(gd);
@@ -117,12 +122,22 @@ public class PlayScreen {
 	}
 	
 	public void update(long elapsedTime){
-		for(int i = 0; i<streams.size(); i++){
-			for(int j = 0; j<streams.get(i).getKeys().size();j++){
-				streams.get(i).getKeys().get(j).update(elapsedTime);
-			}
-			if(moveKey.action(elapsedTime)){
-				streams.get(i).moveKeys();
+//		for(int i = 0; i<streams.size(); i++){
+////			for(Key key: streams.get(i).getKeys()){
+////				key.setY(key.getY()+32*0.5);
+////			}
+//			streams.get(i).moveKeys();
+////			if(moveKey.action(elapsedTime)){
+////				streams.get(i).moveKeys();
+////			}
+////			for(int j = 0; j<streams.get(i).getKeys().size();j++){
+////				streams.get(i).update(elapsedTime);
+////			}
+//		}
+		
+		if(moveKey.action(elapsedTime)){
+			for(int i = 0; i<streams.size(); i++){
+				streams.get(i).moveKeys();		
 			}
 		}
 		
