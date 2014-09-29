@@ -3,6 +3,7 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.Timer;
 
 public class PlayScreen {
@@ -12,16 +13,16 @@ public class PlayScreen {
 	public final static int MAPSIZE = 640;
 	public final static int CENTER = (MAPSIZE/2)-(DIMENSION/2);
 	
-	
 	private int lives;
 	private int score;
 	private int level;
 	private int speed;
-	private int tries;
-	private int success;
+	private double tries;
+	private double success;
 	private String music;
 	
 	private ArrayList<Stream> streams;
+	private ArrayList<Sprite> levelSprite;
 	private Keyhole keyHole;
 	
 	private Timer moveKey;
@@ -125,6 +126,14 @@ public class PlayScreen {
 
 		long time = (60 - (timeRemaining.getCurrentTick()/1000));
 		gameFrame.fontManager.getFont("FPS Font").drawString(gd, "TIME:"+time, 5, 10);
+		
+		gameFrame.fontManager.getFont("FPS Font").drawString(gd, "LIVE:"+lives, 400, 10);
+		gameFrame.fontManager.getFont("FPS Font").drawString(gd, "SCORE:"+score, 5, 30);
+		double accuracy = 100;
+		if(tries>0){
+			accuracy = success/tries*100;
+		}
+		gameFrame.fontManager.getFont("FPS Font").drawString(gd, "ACCURACY:"+ accuracy, 400, 30);
 		
 		keyHole.render(gd);
 		

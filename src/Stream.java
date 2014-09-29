@@ -11,6 +11,7 @@ public class Stream {
 	
 	public Stream(int keyPressed, int direction, int x, int y){
 		this.keys = new ArrayList<Key>();
+		this.unreleasedList = new ArrayList<Key>();
 		this.setKeyPressed(keyPressed);
 		this.setDirection(direction);
 		this.setX(x);
