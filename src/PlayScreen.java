@@ -37,7 +37,7 @@ public class PlayScreen {
 	private void initializeEntities() {
 		streams = new ArrayList<Stream>();
 		keyHole = new Keyhole(gameFrame.getImage("assets/placeholder.png"), CENTER, CENTER);
-		moveKey = new Timer(300);
+		moveKey = new Timer(50);
 		initializeKeys();
 	}
 	
@@ -115,6 +115,8 @@ public class PlayScreen {
 	public void render(Graphics2D gd){
 		gd.setColor(Color.white);
 		gd.fillRect(0, 0, gameFrame.getWidth(), gameFrame.getHeight());
+
+		keyHole.render(gd);
 		
 		for(int i = 0; i<streams.size(); i++){
 			for(int j = 0; j<streams.get(i).getKeys().size();j++){
@@ -122,7 +124,6 @@ public class PlayScreen {
 			}
 		}
 		
-		keyHole.render(gd);
 	}
 	
 	public void update(long elapsedTime){		
@@ -132,11 +133,12 @@ public class PlayScreen {
 			}
 		}
 		
-		checkKeyHoleCollision();
+		checkKeyHoleAndKeyCollision();
+		checkKeyDecay();
 		
 	}
 	
-	public void checkKeyHoleCollision(){
+	public void checkKeyHoleAndKeyCollision(){
 		for(Stream stream: streams){
 			ArrayList<Key> keys = stream.getKeys();
 			if(gameFrame.keyPressed(stream.getKeyPressed())){
@@ -147,6 +149,17 @@ public class PlayScreen {
 					keys.remove(0);
 				}
 				tries++;
+			}
+		}
+	}
+	
+	public void checkKeyDecay(){
+		for(Stream stream: streams){
+			switch(stream.getDirection()){
+				case 1: if(stream.getKeys().size()>0 && stream.getKeys().get(0).getY()>(keyHole.getY()-16)){
+							stream.getKeys().remove(0);
+						}
+						break;
 			}
 		}
 	}
