@@ -126,7 +126,11 @@ public class PlayScreen {
 			}
 		}
 		
+		checkKeyHoleCollision();
 		
 	}
 	
+	public void checkKeyHoleCollision(){
+		
+	}
 }
