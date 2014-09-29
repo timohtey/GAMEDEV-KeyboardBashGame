@@ -36,8 +36,10 @@ public class PlayScreen {
 
 	private void initializeEntities() {
 		streams = new ArrayList<Stream>();
-		keyHole = new Keyhole(gameFrame.getImage("assets/placeholder.png"), CENTER, CENTER);
-		moveKey = new Timer(50);
+		
+		keyHole = new Keyhole(gameFrame.getImage("assets/keyhole.png"), CENTER, CENTER);
+		moveKey = new Timer(300);
+		
 		initializeKeys();
 	}
 	
@@ -156,10 +158,42 @@ public class PlayScreen {
 	public void checkKeyDecay(){
 		for(Stream stream: streams){
 			switch(stream.getDirection()){
-				case 1: if(stream.getKeys().size()>0 && stream.getKeys().get(0).getY()>(keyHole.getY()-16)){
+				case 1: if(stream.getKeys().size()>0 && stream.getKeys().get(0).getY()>(keyHole.getY()+16)){
 							stream.getKeys().remove(0);
 						}
-						break;
+				break;
+				case 2: if(stream.getKeys().size()>0 && stream.getKeys().get(0).getY()>(keyHole.getY()+16) 
+						&& stream.getKeys().get(0).getX()<(keyHole.getX()-16)){
+					stream.getKeys().remove(0);
+				}
+				break;
+				case 3: if(stream.getKeys().size()>0 && stream.getKeys().get(0).getX()<(keyHole.getX()-16)){
+					stream.getKeys().remove(0);
+				}
+				break;
+				case 4: if(stream.getKeys().size()>0 && stream.getKeys().get(0).getX()<(keyHole.getX()-16) 
+						&& 	stream.getKeys().get(0).getY()<(keyHole.getY()-16)){
+					stream.getKeys().remove(0);
+				}
+				break;
+				case 5: if(stream.getKeys().size()>0 && stream.getKeys().get(0).getY()<(keyHole.getY()-16)){
+					stream.getKeys().remove(0);
+				}
+				break;
+				case 6: if(stream.getKeys().size()>0 && stream.getKeys().get(0).getY()<(keyHole.getY()-16)
+						&& stream.getKeys().get(0).getX()>(keyHole.getX()+16)){
+					stream.getKeys().remove(0);
+				}
+				break;
+				case 7: if(stream.getKeys().size()>0 && stream.getKeys().get(0).getX()>(keyHole.getX()+16)){
+					stream.getKeys().remove(0);
+				}
+				break;
+				case 8: if(stream.getKeys().size()>0 && stream.getKeys().get(0).getX()>(keyHole.getX()+16)
+						&& stream.getKeys().get(0).getY()>(keyHole.getY()+16)){
+					stream.getKeys().remove(0);
+				}
+				break;
 			}
 		}
 	}

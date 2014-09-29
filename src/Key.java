@@ -8,9 +8,10 @@ public class Key extends Sprite{
 	private long time;
 	private int keyPressed;
 	
-	public Key(BufferedImage bufferedImage, double x, double y, int keyPressed){
+	public Key(BufferedImage bufferedImage, double x, double y, int keyPressed, long time){
 		super(bufferedImage,x,y);
 		this.keyPressed = keyPressed;
+		this.time = time;
 	}
 	
 	public int getSpeed() {
