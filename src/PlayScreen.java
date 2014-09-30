@@ -198,7 +198,7 @@ public class PlayScreen {
 	}
 	public void setupGame(int level,int speed){
 		this.level = level;
-		lives = 20;
+		lives = 100;
 		score = 0;
 		tries = 0;
 		success = 0;

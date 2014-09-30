@@ -77,16 +77,79 @@ public class Level {
 	private void setupLevel2() {
 		// add keys here
 		
-		int time = 0;
+		int time = 4500;
+		
+		// plucking
 		keys.add(new Key(bufferedImage1, 0.0, 0.0, KeyEvent.VK_1, time));
-		keys.add(new Key(bufferedImage2, 0.0, 0.0, KeyEvent.VK_2, time+100));
-		keys.add(new Key(bufferedImage3, 0.0, 0.0, KeyEvent.VK_3, time+200));
-		keys.add(new Key(bufferedImage4, 0.0, 0.0, KeyEvent.VK_4, time+300));
-		keys.add(new Key(bufferedImage5, 0.0, 0.0, KeyEvent.VK_5, time+400));
-		keys.add(new Key(bufferedImage6, 0.0, 0.0, KeyEvent.VK_6, time+500));
-		keys.add(new Key(bufferedImage7, 0.0, 0.0, KeyEvent.VK_7, time+600));
-		keys.add(new Key(bufferedImage8, 0.0, 0.0, KeyEvent.VK_8, time+700));
+		keys.add(new Key(bufferedImage2, 0.0, 0.0, KeyEvent.VK_2, time+35));
+		keys.add(new Key(bufferedImage3, 0.0, 0.0, KeyEvent.VK_3, time+70));
+		
+		keys.add(new Key(bufferedImage1, 0.0, 0.0, KeyEvent.VK_1, time+2100));
+		keys.add(new Key(bufferedImage2, 0.0, 0.0, KeyEvent.VK_2, time+2400));
+		keys.add(new Key(bufferedImage3, 0.0, 0.0, KeyEvent.VK_3, time+3500));
+		keys.add(new Key(bufferedImage4, 0.0, 0.0, KeyEvent.VK_4, time+4000));
+		keys.add(new Key(bufferedImage1, 0.0, 0.0, KeyEvent.VK_1, time+4800));
+		keys.add(new Key(bufferedImage2, 0.0, 0.0, KeyEvent.VK_2, time+5400));
+		
+		keys.add(new Key(bufferedImage1, 0.0, 0.0, KeyEvent.VK_1, time+7600));
+		keys.add(new Key(bufferedImage2, 0.0, 0.0, KeyEvent.VK_2, time+8200));
+		keys.add(new Key(bufferedImage3, 0.0, 0.0, KeyEvent.VK_3, time+9000));
+		keys.add(new Key(bufferedImage1, 0.0, 0.0, KeyEvent.VK_1, time+9700));
+		keys.add(new Key(bufferedImage2, 0.0, 0.0, KeyEvent.VK_2, time+10800));
+		
+		keys.add(new Key(bufferedImage1, 0.0, 0.0, KeyEvent.VK_1, time+13000));
+		keys.add(new Key(bufferedImage2, 0.0, 0.0, KeyEvent.VK_2, time+13400));
+		keys.add(new Key(bufferedImage3, 0.0, 0.0, KeyEvent.VK_3, time+14500));
+		keys.add(new Key(bufferedImage4, 0.0, 0.0, KeyEvent.VK_4, time+15000));
+		keys.add(new Key(bufferedImage1, 0.0, 0.0, KeyEvent.VK_1, time+15800));
+		keys.add(new Key(bufferedImage2, 0.0, 0.0, KeyEvent.VK_2, time+16400));
 	
+		keys.add(new Key(bufferedImage1, 0.0, 0.0, KeyEvent.VK_1, time+18600));
+		keys.add(new Key(bufferedImage2, 0.0, 0.0, KeyEvent.VK_2, time+19200));
+		keys.add(new Key(bufferedImage3, 0.0, 0.0, KeyEvent.VK_3, time+20000));
+		keys.add(new Key(bufferedImage4, 0.0, 0.0, KeyEvent.VK_4, time+20700));
+		keys.add(new Key(bufferedImage1, 0.0, 0.0, KeyEvent.VK_1, time+21800));
+		
+		// bass
+		keys.add(new Key(bufferedImage7, 0.0, 0.0, KeyEvent.VK_7, time+100));
+		keys.add(new Key(bufferedImage7, 0.0, 0.0, KeyEvent.VK_7, time+400));
+		keys.add(new Key(bufferedImage7, 0.0, 0.0, KeyEvent.VK_7, time+700));
+		keys.add(new Key(bufferedImage7, 0.0, 0.0, KeyEvent.VK_7, time+1000));
+		keys.add(new Key(bufferedImage8, 0.0, 0.0, KeyEvent.VK_8, time+2600));
+		keys.add(new Key(bufferedImage8, 0.0, 0.0, KeyEvent.VK_8, time+2900));
+		keys.add(new Key(bufferedImage8, 0.0, 0.0, KeyEvent.VK_8, time+3200));
+		keys.add(new Key(bufferedImage8, 0.0, 0.0, KeyEvent.VK_8, time+3500));
+		keys.add(new Key(bufferedImage8, 0.0, 0.0, KeyEvent.VK_8, time+3800));
+		keys.add(new Key(bufferedImage7, 0.0, 0.0, KeyEvent.VK_7, time+5500));
+		keys.add(new Key(bufferedImage7, 0.0, 0.0, KeyEvent.VK_7, time+5800));
+		keys.add(new Key(bufferedImage7, 0.0, 0.0, KeyEvent.VK_7, time+6100));
+		keys.add(new Key(bufferedImage7, 0.0, 0.0, KeyEvent.VK_7, time+6400));
+		keys.add(new Key(bufferedImage7, 0.0, 0.0, KeyEvent.VK_7, time+6700));
+		keys.add(new Key(bufferedImage8, 0.0, 0.0, KeyEvent.VK_8, time+8100));
+		keys.add(new Key(bufferedImage8, 0.0, 0.0, KeyEvent.VK_8, time+8400));
+		keys.add(new Key(bufferedImage8, 0.0, 0.0, KeyEvent.VK_8, time+8700));
+		keys.add(new Key(bufferedImage8, 0.0, 0.0, KeyEvent.VK_8, time+9000));
+		keys.add(new Key(bufferedImage8, 0.0, 0.0, KeyEvent.VK_8, time+9300));
+		keys.add(new Key(bufferedImage7, 0.0, 0.0, KeyEvent.VK_7, time+10900));
+		keys.add(new Key(bufferedImage7, 0.0, 0.0, KeyEvent.VK_7, time+11200));
+		keys.add(new Key(bufferedImage7, 0.0, 0.0, KeyEvent.VK_7, time+11500));
+		keys.add(new Key(bufferedImage7, 0.0, 0.0, KeyEvent.VK_7, time+11800));
+		keys.add(new Key(bufferedImage7, 0.0, 0.0, KeyEvent.VK_7, time+12100));
+		keys.add(new Key(bufferedImage8, 0.0, 0.0, KeyEvent.VK_8, time+13800));
+		keys.add(new Key(bufferedImage8, 0.0, 0.0, KeyEvent.VK_8, time+14100));
+		keys.add(new Key(bufferedImage8, 0.0, 0.0, KeyEvent.VK_8, time+14400));
+		keys.add(new Key(bufferedImage8, 0.0, 0.0, KeyEvent.VK_8, time+14700));
+		keys.add(new Key(bufferedImage8, 0.0, 0.0, KeyEvent.VK_8, time+15000));
+		keys.add(new Key(bufferedImage7, 0.0, 0.0, KeyEvent.VK_7, time+16600));
+		keys.add(new Key(bufferedImage7, 0.0, 0.0, KeyEvent.VK_7, time+16900));
+		keys.add(new Key(bufferedImage7, 0.0, 0.0, KeyEvent.VK_7, time+17200));
+		keys.add(new Key(bufferedImage7, 0.0, 0.0, KeyEvent.VK_7, time+17500));
+		keys.add(new Key(bufferedImage7, 0.0, 0.0, KeyEvent.VK_7, time+17800));
+		keys.add(new Key(bufferedImage8, 0.0, 0.0, KeyEvent.VK_8, time+19300));
+		keys.add(new Key(bufferedImage8, 0.0, 0.0, KeyEvent.VK_8, time+19600));
+		keys.add(new Key(bufferedImage8, 0.0, 0.0, KeyEvent.VK_8, time+19900));
+		keys.add(new Key(bufferedImage8, 0.0, 0.0, KeyEvent.VK_8, time+20200));
+		keys.add(new Key(bufferedImage8, 0.0, 0.0, KeyEvent.VK_8, time+20500));
 	}
 
 	public ArrayList<Key> getKeys() {
