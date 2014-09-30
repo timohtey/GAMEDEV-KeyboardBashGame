@@ -7,6 +7,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.Timer;
 
@@ -27,7 +30,7 @@ public class PlayScreen {
 	private double success;
 	private String music;
 	public double accuracy = 100;
-	int gameLength = 10000;
+	int gameLength = 30000;
 	
 	private ArrayList<Stream> streams;
 	private ArrayList<Sprite> levelSprite;
@@ -122,7 +125,7 @@ public class PlayScreen {
 		switch(level){
 			case 0: music = "src/assets/background.wav";
 					break;
-			case 1: music = "src/assets/background.wav";
+			case 1: music = "src/assets/background2.wav";
 					break;
 		}	
 	}
@@ -130,8 +133,9 @@ public class PlayScreen {
 	public void render(Graphics2D gd){
 		gd.setColor(Color.white);
 		gd.fillRect(0, 0, gameFrame.getWidth(), gameFrame.getHeight());
-
-		long time = (60 - (timeRemaining.getCurrentTick()/1000));
+		
+		long time = ((gameLength/1000) - (timeRemaining.getCurrentTick()/1000));
+		
 		gameFrame.fontManager.getFont("FPS Font").drawString(gd, "TIME:"+time, 5, 10);
 		gameFrame.fontManager.getFont("FPS Font").drawString(gd, "LEVEL:"+(level+1), 400, 50);
 		gameFrame.fontManager.getFont("FPS Font").drawString(gd, "LIVE:"+lives, 400, 10);

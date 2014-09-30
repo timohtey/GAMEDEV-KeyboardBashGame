@@ -53,7 +53,7 @@ public class LevelSelectScreen {
 		
 		
 		
-		g.fontManager.getFont("FPS Font").drawString(gd, "SONG NAME", 200, 70);
+		g.fontManager.getFont("FPS Font").drawString(gd, "SONG NAME", 100, 70);
 		g.fontManager.getFont("FPS Font").drawString(gd, songName, 200, 90);
 		//TODO print highscore
 		
@@ -68,7 +68,7 @@ public class LevelSelectScreen {
 		
 		switch(level){
 			case 0: songName = "YOUNG BLOOD BY THE NAKED AND FAMOUS";break;
-			case 1: songName = "TEST";break;
+			case 1: songName = "CONSTANT CONVERSATIONS BY PASSION PIT";break;
 		}
 	}
 	
