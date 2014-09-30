@@ -18,7 +18,7 @@ public class MainScreen {
 	public void readInput(){
 		if(g.click()){
 			if(g.checkPosMouse(startButton, false)){
-				g.setActiveScreen(g.PLAYSCREEN);
+				g.setActiveScreen(g.LEVELSELECTSCREEN);
 			}
 		}
 	}

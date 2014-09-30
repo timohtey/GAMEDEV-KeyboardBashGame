@@ -32,10 +32,31 @@ public class Level {
 		keys.add(new Key(gameFrame.getImage("assets/placeholder.png"), 0.0, 0.0, KeyEvent.VK_7, 7000));
 		keys.add(new Key(gameFrame.getImage("assets/placeholder.png"), 0.0, 0.0, KeyEvent.VK_8, 8000));
 		
+		
+		int time = 10000;
+		keys.add(new Key(gameFrame.getImage("assets/placeholder.png"), 0.0, 0.0, KeyEvent.VK_1, time));
+		keys.add(new Key(gameFrame.getImage("assets/placeholder.png"), 0.0, 0.0, KeyEvent.VK_2, time+100));
+		keys.add(new Key(gameFrame.getImage("assets/placeholder.png"), 0.0, 0.0, KeyEvent.VK_3, time+200));
+		keys.add(new Key(gameFrame.getImage("assets/placeholder.png"), 0.0, 0.0, KeyEvent.VK_4, time+300));
+		keys.add(new Key(gameFrame.getImage("assets/placeholder.png"), 0.0, 0.0, KeyEvent.VK_5, time+400));
+		keys.add(new Key(gameFrame.getImage("assets/placeholder.png"), 0.0, 0.0, KeyEvent.VK_6, time+500));
+		keys.add(new Key(gameFrame.getImage("assets/placeholder.png"), 0.0, 0.0, KeyEvent.VK_7, time+600));
+		keys.add(new Key(gameFrame.getImage("assets/placeholder.png"), 0.0, 0.0, KeyEvent.VK_8, time+700));
+		
 	}
 
 	private void setupLevel2() {
 		// add keys here
+		
+		int time = 10000;
+		keys.add(new Key(gameFrame.getImage("assets/placeholder.png"), 0.0, 0.0, KeyEvent.VK_1, time));
+		keys.add(new Key(gameFrame.getImage("assets/placeholder.png"), 0.0, 0.0, KeyEvent.VK_2, time+100));
+		keys.add(new Key(gameFrame.getImage("assets/placeholder.png"), 0.0, 0.0, KeyEvent.VK_3, time+200));
+		keys.add(new Key(gameFrame.getImage("assets/placeholder.png"), 0.0, 0.0, KeyEvent.VK_4, time+300));
+		keys.add(new Key(gameFrame.getImage("assets/placeholder.png"), 0.0, 0.0, KeyEvent.VK_5, time+400));
+		keys.add(new Key(gameFrame.getImage("assets/placeholder.png"), 0.0, 0.0, KeyEvent.VK_6, time+500));
+		keys.add(new Key(gameFrame.getImage("assets/placeholder.png"), 0.0, 0.0, KeyEvent.VK_7, time+600));
+		keys.add(new Key(gameFrame.getImage("assets/placeholder.png"), 0.0, 0.0, KeyEvent.VK_8, time+700));
 		
 	}
 

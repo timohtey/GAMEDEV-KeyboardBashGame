@@ -16,12 +16,14 @@ public class PlayScreen {
 	public final static int KEY_DECAY_DISTANCE = 8;
 	
 	private int lives;
-	private int score;
+	public int score;
 	private int level;
 	private int speed;
 	private double tries;
 	private double success;
 	private String music;
+	public double accuracy = 100;
+	int gameLength = 10000;
 	
 	private ArrayList<Stream> streams;
 	private ArrayList<Sprite> levelSprite;
@@ -32,17 +34,7 @@ public class PlayScreen {
 	long time;
 	
 	public PlayScreen(GameFrame gameFrame){
-		level = 0;
-		lives = 20;
-		score = 0;
-		tries = 0;
-		success = 0;
-		speed = level*1;
 		this.gameFrame = gameFrame;
-		chooseMusic();
-		initializeEntities();
-		timeRemaining = new Timer(60000);
-		
 	}
 
 	private void initializeEntities() {
@@ -118,11 +110,13 @@ public class PlayScreen {
 	}
 	
 	public void playSound(){
-		//gameFrame.playSound(music);
+		gameFrame.playSound(music);
 	}
 	private void chooseMusic() {
 		switch(level){
 			case 0: music = "src/assets/background.wav";
+					break;
+			case 1: music = "src/assets/background.wav";
 					break;
 		}	
 	}
@@ -133,10 +127,10 @@ public class PlayScreen {
 
 		long time = (60 - (timeRemaining.getCurrentTick()/1000));
 		gameFrame.fontManager.getFont("FPS Font").drawString(gd, "TIME:"+time, 5, 10);
-		
+		gameFrame.fontManager.getFont("FPS Font").drawString(gd, "LEVEL:"+(level+1), 400, 50);
 		gameFrame.fontManager.getFont("FPS Font").drawString(gd, "LIVE:"+lives, 400, 10);
 		gameFrame.fontManager.getFont("FPS Font").drawString(gd, "SCORE:"+score, 5, 30);
-		double accuracy = 100;
+		
 		if(tries>0){
 			accuracy = success/tries*100;
 		}
@@ -154,15 +148,13 @@ public class PlayScreen {
 	}
 	
 	
-	public void update(long elapsedTime){		
+	public void update(long elapsedTime){	
+		
+		checkGameOver(elapsedTime);
 		if(moveKey.action(elapsedTime)){
 			for(int i = 0; i<streams.size(); i++){
 				streams.get(i).moveKeys();		
 			}
-		}
-		
-		if(timeRemaining.action(elapsedTime)){
-			
 		}
 		
 		for(Stream stream:streams){
@@ -175,8 +167,39 @@ public class PlayScreen {
 		checkKeyHoleAndKeyCollision();
 		checkKeyDecay();
 		
+		
+	}
+	public void checkGameOver(long elapsedTime){
+		if(lives<=0){
+			stopGame();
+			gameFrame.setActiveScreen(GameFrame.GAMEOVERSCREEN);
+		}else if( timeRemaining.action(elapsedTime)){
+			stopGame();
+			gameFrame.setActiveScreen(GameFrame.LEVELTRANSITIONSCREEN);
+		}
+	}
+	public void setupGame(int level,int speed){
+		this.level = level;
+		lives = 20;
+		score = 0;
+		tries = 0;
+		success = 0;
+		accuracy = 100;
+		this.speed = speed;
+		chooseMusic();
+		initializeEntities();
+		timeRemaining = new Timer(gameLength); //TODO: match timer with music length
 	}
 	
+	public void startGame(int level,int speed){
+		setupGame(level,speed);
+		playSound();
+	}
+	
+	public void stopGame(){
+		//TODO: Save Score
+		gameFrame.bsSound.stop(music);
+	}
 	public void checkKeyHoleAndKeyCollision(){
 		for(Stream stream: streams){
 			ArrayList<Key> keys = stream.getKeys();
@@ -193,6 +216,8 @@ public class PlayScreen {
 			}
 		}
 	}
+	
+	
 	
 	public void checkKeyDecay(){
 		for(Stream stream: streams){
