@@ -7,11 +7,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 
-import javax.swing.ImageIcon;
-import javax.swing.JPanel;
-
 import com.golden.gamedev.object.Sprite;
 import com.golden.gamedev.object.Timer;
+import com.golden.gamedev.object.sprite.AdvanceSprite;
 
 public class PlayScreen {
 	private GameFrame gameFrame;
@@ -41,9 +39,16 @@ public class PlayScreen {
 	private Timer timeRemaining;
 	long time;
 	
+	AdvanceSprite background;
+	
 	public PlayScreen(GameFrame gameFrame){
 		this.gameFrame = gameFrame;
 		readHighscore();
+		background = new AdvanceSprite(gameFrame.getImages("src/assets/background3spritesheet.png", 60,1),0,0);
+		
+		background.getAnimationTimer().setDelay(50);
+		background.setAnimate(true);
+		background.setLoopAnim(true);
 	}
 
 	private void initializeEntities() {
@@ -135,7 +140,7 @@ public class PlayScreen {
 		gd.fillRect(0, 0, gameFrame.getWidth(), gameFrame.getHeight());
 		
 		long time = ((gameLength/1000) - (timeRemaining.getCurrentTick()/1000));
-		
+		background.render(gd);
 		gameFrame.fontManager.getFont("FPS Font").drawString(gd, "TIME:"+time, 5, 10);
 		gameFrame.fontManager.getFont("FPS Font").drawString(gd, "LEVEL:"+(level+1), 400, 50);
 		gameFrame.fontManager.getFont("FPS Font").drawString(gd, "LIVE:"+lives, 400, 10);
@@ -159,6 +164,8 @@ public class PlayScreen {
 	
 	
 	public void update(long elapsedTime){	
+		
+		background.update(elapsedTime);
 		
 		checkGameOver(elapsedTime);
 		if(moveKey.action(elapsedTime)){
