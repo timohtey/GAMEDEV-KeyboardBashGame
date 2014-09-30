@@ -34,6 +34,7 @@ public class LevelTransitionScreen {
 		// TODO show stats, your score, current highscore, accuracy
 		g.fontManager.getFont("FPS Font").drawString(gd, "SCORE:"+GameFrame.playScreen.score, 200, 100);
 		g.fontManager.getFont("FPS Font").drawString(gd, "ACCURACY:"+ GameFrame.playScreen.accuracy, 200, 140);
+		g.fontManager.getFont("FPS Font").drawString(gd, "LEVEL HIGHSCORE:"+ GameFrame.playScreen.scores.get(LevelSelectScreen.level), 200, 180);
 		
 		nextLevelButton.render(gd);
 		mainMenuButton.render(gd);

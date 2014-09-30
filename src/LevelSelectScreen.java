@@ -52,9 +52,12 @@ public class LevelSelectScreen {
 		
 		
 		
+		
 		g.fontManager.getFont("FPS Font").drawString(gd, "SONG NAME", 200, 70);
-		g.fontManager.getFont("FPS Font").drawString(gd, songName, 200, 80);
+		g.fontManager.getFont("FPS Font").drawString(gd, songName, 200, 90);
 		//TODO print highscore
+		
+		g.fontManager.getFont("FPS Font").drawString(gd, "HIGHSCORE "+GameFrame.playScreen.scores.get(level), 200, 110);
 		playLevelButton.render(gd);
 		nextButton.render(gd);
 		backButton.render(gd);
