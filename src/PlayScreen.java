@@ -1,6 +1,10 @@
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 
 import com.golden.gamedev.object.Sprite;
@@ -25,6 +29,7 @@ public class PlayScreen {
 	
 	private ArrayList<Stream> streams;
 	private ArrayList<Sprite> levelSprite;
+	private ArrayList<Integer> scores;
 	private Keyhole keyHole;
 	
 	private Timer moveKey;
@@ -42,12 +47,13 @@ public class PlayScreen {
 		chooseMusic();
 		initializeEntities();
 		timeRemaining = new Timer(60000);
-		
+		readHighscore();
+		saveScores();
 	}
 
 	private void initializeEntities() {
 		streams = new ArrayList<Stream>();
-		
+		scores = new ArrayList<Integer>();
 		keyHole = new Keyhole(gameFrame.getImage("assets/keyhole.png"), CENTER, CENTER);
 		moveKey = new Timer(50);
 		
@@ -175,6 +181,39 @@ public class PlayScreen {
 		checkKeyHoleAndKeyCollision();
 		checkKeyDecay();
 		
+	}
+	
+	private void readHighscore() {
+		String fileName="src/score.txt";
+		try{
+			FileReader inputFile = new FileReader(fileName);
+		    BufferedReader bufferReader = new BufferedReader(inputFile);
+		
+		    String line;
+		    while ((line = bufferReader.readLine()) != null){
+		    	scores.add(Integer.parseInt(line));
+		    }
+		    for(int i = 0; i<scores.size(); i++){
+		      	System.out.println(scores.get(i));
+		    }
+		    bufferReader.close();
+		}catch(Exception e){
+			e.printStackTrace();                   
+	    }	
+	}
+	 
+	private void saveScores(){
+	    try {
+	    	File file = new File("src/score.txt");
+	    	FileWriter fileWriter = new FileWriter(file, false); // true to append
+	    	                                                     // false to overwrite.
+	        for(int i = 0; i<scores.size(); i++){
+	        	fileWriter.write(scores.get(i) + "\n");	
+	        }
+	        fileWriter.close();
+	    } catch (Exception e) {
+	      System.out.println("There was a problem:" + e);
+	    }
 	}
 	
 	public void checkKeyHoleAndKeyCollision(){

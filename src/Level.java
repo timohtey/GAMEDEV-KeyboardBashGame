@@ -22,15 +22,15 @@ public class Level {
 
 	private void setupLevel1() {
 		// add keys here
-		keys.add(new Key(gameFrame.getImage("assets/placeholder.png"), 0.0, 0.0, KeyEvent.VK_1, 1000));
-		keys.add(new Key(gameFrame.getImage("assets/placeholder.png"), 0.0, 0.0, KeyEvent.VK_1, 2000));
-		keys.add(new Key(gameFrame.getImage("assets/placeholder.png"), 0.0, 0.0, KeyEvent.VK_2, 2000));
-		keys.add(new Key(gameFrame.getImage("assets/placeholder.png"), 0.0, 0.0, KeyEvent.VK_3, 3000));
-		keys.add(new Key(gameFrame.getImage("assets/placeholder.png"), 0.0, 0.0, KeyEvent.VK_4, 4000));
-		keys.add(new Key(gameFrame.getImage("assets/placeholder.png"), 0.0, 0.0, KeyEvent.VK_5, 5000));
-		keys.add(new Key(gameFrame.getImage("assets/placeholder.png"), 0.0, 0.0, KeyEvent.VK_6, 6000));
-		keys.add(new Key(gameFrame.getImage("assets/placeholder.png"), 0.0, 0.0, KeyEvent.VK_7, 7000));
-		keys.add(new Key(gameFrame.getImage("assets/placeholder.png"), 0.0, 0.0, KeyEvent.VK_8, 8000));
+		keys.add(new Key(gameFrame.getImage("assets/1.png"), 0.0, 0.0, KeyEvent.VK_1, 1000));
+		keys.add(new Key(gameFrame.getImage("assets/1.png"), 0.0, 0.0, KeyEvent.VK_1, 2000));
+		keys.add(new Key(gameFrame.getImage("assets/2.png"), 0.0, 0.0, KeyEvent.VK_2, 2000));
+		keys.add(new Key(gameFrame.getImage("assets/3.png"), 0.0, 0.0, KeyEvent.VK_3, 3000));
+		keys.add(new Key(gameFrame.getImage("assets/4.png"), 0.0, 0.0, KeyEvent.VK_4, 4000));
+		keys.add(new Key(gameFrame.getImage("assets/5.png"), 0.0, 0.0, KeyEvent.VK_5, 5000));
+		keys.add(new Key(gameFrame.getImage("assets/6.png"), 0.0, 0.0, KeyEvent.VK_6, 6000));
+		keys.add(new Key(gameFrame.getImage("assets/7.png"), 0.0, 0.0, KeyEvent.VK_7, 7000));
+		keys.add(new Key(gameFrame.getImage("assets/8.png"), 0.0, 0.0, KeyEvent.VK_8, 8000));
 		
 	}
 
