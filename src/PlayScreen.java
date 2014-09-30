@@ -198,6 +198,7 @@ public class PlayScreen {
 				stream.getKeys().add(stream.getUnreleased().get(0));
 				stream.getUnreleased().remove(0);
 			}
+			stream.update(elapsedTime);
 		}
 		
 		checkKeyHoleAndKeyCollision();
@@ -216,7 +217,7 @@ public class PlayScreen {
 	}
 	public void setupGame(int level,int speed){
 		this.level = level;
-		lives = 20;
+		lives = 100;
 		score = 0;
 		tries = 0;
 		success = 0;
