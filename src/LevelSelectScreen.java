@@ -37,7 +37,8 @@ public class LevelSelectScreen {
 				level%=MAXLEVEL;
 			}
 			else if(g.checkPosMouse(backButton, false)){
-				level--;
+				if(level>0)
+					level--;
 				level%=MAXLEVEL;
 			}
 		}

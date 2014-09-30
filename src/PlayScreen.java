@@ -1,5 +1,7 @@
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.File;
@@ -40,15 +42,19 @@ public class PlayScreen {
 	long time;
 	
 	AdvanceSprite background;
+	AdvanceSprite stream;
 	
 	public PlayScreen(GameFrame gameFrame){
 		this.gameFrame = gameFrame;
 		readHighscore();
 		background = new AdvanceSprite(gameFrame.getImages("src/assets/background3spritesheet.png", 60,1),0,0);
-		
+		stream = new AdvanceSprite(gameFrame.getImages("src/assets/streamsheet.png", 8,1),0,0);
 		background.getAnimationTimer().setDelay(50);
 		background.setAnimate(true);
 		background.setLoopAnim(true);
+//		stream.getAnimationTimer().setDelay(50);
+//		stream.setAnimate(true);
+//		stream.setLoopAnim(true);
 	}
 
 	private void initializeEntities() {
@@ -139,12 +145,25 @@ public class PlayScreen {
 		gd.setColor(Color.white);
 		gd.fillRect(0, 0, gameFrame.getWidth(), gameFrame.getHeight());
 		
+		
 		long time = ((gameLength/1000) - (timeRemaining.getCurrentTick()/1000));
 		background.render(gd);
+		//stream.render(gd);
+//		gd.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+//		gd.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BICUBIC);
+		
+		Graphics2D gd2 = (Graphics2D)gd.create();
+		AlphaComposite ac = java.awt.AlphaComposite.getInstance(AlphaComposite.SRC_OVER,.2F);
+        gd2.setComposite(ac);
+		
+		gd2.drawImage(stream.getImage(), null, 0, 0);
+		
+		
 		gameFrame.fontManager.getFont("FPS Font").drawString(gd, "TIME:"+time, 5, 10);
 		gameFrame.fontManager.getFont("FPS Font").drawString(gd, "LEVEL:"+(level+1), 400, 50);
 		gameFrame.fontManager.getFont("FPS Font").drawString(gd, "LIVE:"+lives, 400, 10);
 		gameFrame.fontManager.getFont("FPS Font").drawString(gd, "SCORE:"+score, 5, 30);
+		
 		
 		if(tries>0){
 			accuracy = success/tries*100;
@@ -267,6 +286,12 @@ public class PlayScreen {
 					lives--;
 				}
 				tries++;
+				if(this.stream.getFrame()<6){
+					this.stream.setFrame(this.stream.getFrame()+1);
+				}else{
+					this.stream.setFrame(0);
+				}
+				
 			}
 		}
 	}
