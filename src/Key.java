@@ -1,15 +1,15 @@
 import java.awt.image.BufferedImage;
 
-import com.golden.gamedev.object.Sprite;
+import com.golden.gamedev.object.sprite.AdvanceSprite;
 
 
-public class Key extends Sprite{
+public class Key extends AdvanceSprite{
 	private int speed;
 	private long time;
 	private int keyPressed;
 	private boolean isSpawn;
 	
-	public Key(BufferedImage bufferedImage, double x, double y, int keyPressed, long time){
+	public Key(BufferedImage[] bufferedImage, double x, double y, int keyPressed, long time){
 		super(bufferedImage,x,y);
 		this.keyPressed = keyPressed;
 		this.time = time;
