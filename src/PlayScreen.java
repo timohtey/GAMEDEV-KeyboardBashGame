@@ -172,6 +172,7 @@ public class PlayScreen {
 				stream.getKeys().add(stream.getUnreleased().get(0));
 				stream.getUnreleased().remove(0);
 			}
+			stream.update(elapsedTime);
 		}
 		
 		checkKeyHoleAndKeyCollision();
