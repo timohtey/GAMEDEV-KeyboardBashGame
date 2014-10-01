@@ -17,6 +17,7 @@ public class LevelSelectScreen {
 	static int level=0;
 	static int speed=1;
 	public final static int MAXLEVEL=2;
+	Sprite levelBck;
 	
 	public LevelSelectScreen(GameFrame g,PlayScreen ps){
 		this.ps = ps;
@@ -24,6 +25,12 @@ public class LevelSelectScreen {
 		playLevelButton = new Sprite(g.getImage("src/assets/playLevelButton.png"),149,522);
 		nextButton = new Sprite(g.getImage("src/assets/nextButton.png"),504,293);
 		backButton = new Sprite(g.getImage("src/assets/backButton.png"),19,294);
+		
+		if(level == 0){
+			levelBck = new Sprite(g.getImage("src/assets/level1.jpg"));
+		} else if (level == 1){
+			levelBck = new Sprite(g.getImage("src/assets/level2.jpg"));
+		}
 	}
 	
 	public void readInput(){
@@ -49,16 +56,15 @@ public class LevelSelectScreen {
 		gd.fillRect(0, 0, g.getWidth(), g.getHeight());
 		gd.setColor(Color.BLACK);
 		g.fontManager.getFont("FPS Font").drawString(gd, "LEVEL SELECT", 10, 10);
-		g.fontManager.getFont("FPS Font").drawString(gd, "LEVEL "+(level+1), 200, 50);
+		g.fontManager.getFont("FPS Font").drawString(gd, "LEVEL "+(level+1), 100, 50);
 		
-		
-		
+		levelBck.render(gd);
 		
 		g.fontManager.getFont("FPS Font").drawString(gd, "SONG NAME", 100, 70);
-		g.fontManager.getFont("FPS Font").drawString(gd, songName, 200, 90);
+		g.fontManager.getFont("FPS Font").drawString(gd, songName, 100, 90);
 		//TODO print highscore
 		
-		g.fontManager.getFont("FPS Font").drawString(gd, "HIGHSCORE "+GameFrame.playScreen.scores.get(level), 200, 110);
+		g.fontManager.getFont("FPS Font").drawString(gd, "HIGHSCORE "+GameFrame.playScreen.scores.get(level), 100, 110);
 		playLevelButton.render(gd);
 		nextButton.render(gd);
 		backButton.render(gd);
@@ -67,6 +73,13 @@ public class LevelSelectScreen {
 	public void update(long elapsedTime){
 		readInput();
 		
+		if(level == 0){
+			levelBck = new Sprite(g.getImage("src/assets/level1.jpg"));
+		} else if (level == 1){
+			levelBck = new Sprite(g.getImage("src/assets/level2.jpg"));
+		}
+		
+		levelBck.update(elapsedTime);
 		switch(level){
 			case 0: songName = "YOUNG BLOOD BY THE NAKED AND FAMOUS";break;
 			case 1: songName = "CONSTANT CONVERSATIONS BY PASSION PIT";break;
